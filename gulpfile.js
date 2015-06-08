@@ -11,6 +11,7 @@ var gulp            = require('gulp'),
     browserSync     = require('browser-sync'),
     rename          = require('gulp-rename'),
     notify          = require("gulp-notify"),
+    cp              = require('child_process'),
     reload          = browserSync.reload;
 
 var src = {
@@ -21,7 +22,7 @@ var src = {
   fonts:   './assets/fonts/**/*.{ttf,woff,eot,svg}'
 }
 
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', ['sass', 'scripts', 'build'], function() {
     browserSync({
         server: {
             baseDir: "_site/"
@@ -35,23 +36,25 @@ gulp.task('serve', ['sass'], function() {
         open: "external"
     });
 
-    gulp.watch(src.scss + '**/*.scss', ['sass']);
-    gulp.watch('./_site/*.html').on('change', reload);
     gulp.watch('./_site/assets/scripts/*.js').on('change', reload);
-    
 });
 
-gulp.task('build', function (cb) {
-   var build = require('child_process').spawn('jekyll', ['build'], {stdio: 'inherit'});
-   build.on('exit', cb);
+//Build Jekyll
+gulp.task('build', function (done) {
+    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+        .on('close', done);
+});
+
+gulp.task('jekyll-rebuild', ['build'], function () {
+    browserSync.reload();
 });
 
 gulp.task('scripts', function(){
-  gulp.src(src.js)
+  gulp.src(['./assets/scripts/**/*.js', '!./assets/scripts/**/*.min.js'])
     .pipe(plumber())
     .pipe(uglify())
     .pipe(concat('scripts.min.js'))
-    .pipe(gulp.dest('./assets/scripts/'));
+    .pipe(gulp.dest('./_site/assets/scripts/'));
 });
 
 gulp.task('sass', function() {
@@ -70,7 +73,7 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./assets/styles'))
     .pipe(minifycss({ keepSpecialComments: 0 }))
     .pipe(rename({suffix: '.min' }))
-    .pipe(gulp.dest('./assets/styles/'))
+    .pipe(gulp.dest('./_site/assets/styles/'))
     .pipe(reload({ stream: true }));
 });
 
@@ -78,23 +81,15 @@ gulp.task('image', function(){
   gulp.src(src.img)
     .pipe(plumber())
     .pipe(imagemin())
-    .pipe(gulp.dest('./assets/images/'));
+    .pipe(gulp.dest('./_site/assets/images/'));
 });
 
-
-gulp.task('fonts', function() {
-   gulp.src(src.fonts)
-   .pipe(gulp.dest('./assets/fonts'));
-});
-
-gulp.task('jekyll-rebuild', ['build'], function () {
-    browserSync.reload();
-});
 
 gulp.task('watch', function(){  
-  gulp.watch(src.js, ['scripts']);
+  gulp.watch(src.scss + '**/*.scss', ['sass']);
+  gulp.watch(['./assets/scripts/**/*.js', '!./assets/scripts/**/*.min.js'], ['scripts']);
   gulp.watch(['index.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
 
-gulp.task('default', ['build', 'scripts', 'fonts', 'image', 'watch', 'serve']);
+gulp.task('default', ['image', 'watch', 'serve']);

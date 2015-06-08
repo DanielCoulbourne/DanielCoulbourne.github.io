@@ -1,7 +1,41 @@
 ---
 layout: default
 ---
-  <h1>test</h1>
+  <div class="container">
 
-  {% for post in site.posts %}
-  {% endfor %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+          <h2>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h2>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <hr>
+  
+    <h1>Batter</h1>
+    <div class="grid">
+      <div class="col-50"></div>
+      <div class="col-50"></div>
+      <div class="col-20"></div>
+      <div class="col-80"></div>
+      <div class="col-33"></div>
+      <div class="col-33"></div>
+      <div class="col-33"></div>
+      <div class="col-40"></div>
+      <div class="col-40 col--push-20"></div>
+      <div class="col-75 col--centered"></div>
+      <div class="col-20"></div>
+      <div class="col-20"></div>
+      <div class="col-20"></div>
+      <div class="col-20"></div>
+      <div class="col-20"></div>
+      <div class="col-50 col--push-25"></div>
+      <div class="col-25"></div>
+      <div class="col-100"></div>
+    </div>
+  </div>
