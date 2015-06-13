@@ -591,3 +591,18 @@ html, body {
   background-clip: content-box;
   background-color: #d6d6d6;
 }
+
+.header {
+  padding: 64px 0;
+}
+
+.header__title {
+  font-size: 100px;
+  font-size: 6.25rem;
+}
+
+.post-list {
+  list-style-type: none;
+  margin: 0 0 64px 0;
+  padding: 0;
+}

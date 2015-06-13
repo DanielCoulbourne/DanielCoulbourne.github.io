@@ -41,3 +41,18 @@ html, body {
     background-color: darken(color(white), 12);  
   }
 }
+
+.header {
+  padding: base(4) 0;
+}
+
+.header__title {
+  @include font-size(100);
+}
+
+.post-list {
+  list-style-type: none;
+  margin: 0 0 base(4) 0;
+  padding: 0;
+}
+
