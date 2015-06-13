@@ -12,5 +12,5 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
-exclude: ['node_modules', 'assets/styles/scss']
+exclude: ['node_modules', 'assets/styles/scss', 'gulpfile.js', 'package.json']
 encoding: utf-8
