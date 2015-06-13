@@ -1,9 +1,9 @@
 <ul>
-{% for member in site.data.members %}
-  <li>
-    <a href="https://github.com/{{ member.github }}">
-      {{ member.name }}
-    </a>
-  </li>
-{% endfor %}
+	{% for person in site.data.people %}
+		<li>
+			<a href="https://twitter.com/{{ person.twitter }}">
+				{{ person.name }}
+			</a>
+		</li>
+	{% endfor %}
 </ul>
