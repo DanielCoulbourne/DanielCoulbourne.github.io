@@ -492,7 +492,7 @@ pre, table, fieldset, hr {
 }
 
 html {
-  color: #3a3a3a;
+  color: #1a232c;
   font-size: 16px;
 }
 
@@ -519,7 +519,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 16px;
-  color: #3a3a3a;
+  color: #1a232c;
   line-height: 1.1em;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -558,12 +558,12 @@ h6 {
 }
 
 html {
-  background-color: whitesmoke;
+  background-color: #ffffff;
 }
 
 .container {
   width: 90%;
-  max-width: 960px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -589,7 +589,7 @@ html, body {
   height: 32px;
   margin-bottom: 20px;
   background-clip: content-box;
-  background-color: #d6d6d6;
+  background-color: #e0e0e0;
 }
 
 .header {
@@ -605,4 +605,20 @@ html, body {
   list-style-type: none;
   margin: 0 0 64px 0;
   padding: 0;
+}
+
+.post-list-item {
+  margin-bottom: 32px;
+}
+
+.post-link {
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  color: #1a232c;
+}
+
+.post-meta {
+  text-align: left;
 }

@@ -12,7 +12,7 @@ html {
 
 .container {
   width: 90%;
-  max-width: 960px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -56,3 +56,18 @@ html, body {
   padding: 0;
 }
 
+.post-list-item {
+  margin-bottom: base(2);
+}
+
+.post-link {
+  margin-bottom: base(1);
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  color: color(text);
+}
+
+.post-excerpt {
+  text-align: left;
+}
